@@ -110,14 +110,23 @@ export default function Info() {
                 margin: 1,
                 width: 60,
                 height: 60,
-                backgroundColor: item == 0 ? "black" : "#FAEBD7",
+                backgroundColor: item === 0 ? "#714242" : "#f3d3aa",
                 alignItems: "center",
                 justifyContent: "center",
                 borderWidth: 1,
                 borderColor: "black",
+                borderRadius: 12,
               }}
             >
-              <Text>{item == 0 ? "" : item}</Text>
+              <Text
+                style={{
+                  color: "#a66950",
+                  fontWeight: "bold",
+                  fontSize: 18,
+                }}
+              >
+                {item == 0 ? "" : item}
+              </Text>
             </View>
           )}
         />
@@ -127,18 +136,17 @@ export default function Info() {
             marginVertical: 0,
             flexDirection: "row",
             margin: 20,
-            // justifyContent: "flex-end",
-            // alignItems: "baseline",
           }}
         >
           <Text
             style={{
               backgroundColor: "#FAEBD7",
-              color: "black",
+              color: "#82503d",
               fontSize: 20,
               borderRadius: 5,
               padding: 5,
               margin: 5,
+              fontWeight: "bold",
             }}
           >
             Steps: {steps}
@@ -146,23 +154,36 @@ export default function Info() {
           <Text
             style={{
               backgroundColor: "#FAEBD7",
-              color: "black",
+              color: "#82503d",
               fontSize: 20,
               borderRadius: 5,
               padding: 5,
               margin: 5,
+              fontWeight: "bold",
             }}
           >
             Time: {time}
           </Text>
         </View>
         <TouchableOpacity
-          style={{ backgroundColor: "#FAEBD7", padding: 10, borderRadius: 12 }}
+          style={{ backgroundColor: "#f3d3aa", padding: 10, borderRadius: 12 }}
           onPress={() =>
             router.push({ pathname: "/", params: { reset: true } })
           }
         >
-          <Text style={{ color: "black", fontSize: 20 }}>Play Again?</Text>
+          <Text
+            style={{
+              // backgroundColor: "#f3d3aa",
+              color: "#82503d",
+              fontSize: 20,
+              borderRadius: 5,
+              // padding: 5,
+              // margin: 5,
+              fontWeight: "bold",
+            }}
+          >
+            Play Again?
+          </Text>
         </TouchableOpacity>
       </View>
 
@@ -186,7 +207,11 @@ export default function Info() {
           }}
         >
           <View style={{ alignItems: "center", marginBottom: 2 }}>
-            <Text style={{ color: "black", fontSize: 20 }}>Leaderboard</Text>
+            <Text
+              style={{ color: "#82503d", fontWeight: "bold", fontSize: 20 }}
+            >
+              Leaderboard
+            </Text>
           </View>
           <View
             style={{
@@ -196,10 +221,26 @@ export default function Info() {
               justifyContent: "space-between",
             }}
           >
-            <Text style={{ color: "black", fontSize: 16 }}>Position</Text>
-            <Text style={{ color: "black", fontSize: 16 }}>Name</Text>
-            <Text style={{ color: "black", fontSize: 16 }}>Steps</Text>
-            <Text style={{ color: "black", fontSize: 16 }}>Time</Text>
+            <Text
+              style={{ color: "#82503d", fontWeight: "bold", fontSize: 16 }}
+            >
+              Position
+            </Text>
+            <Text
+              style={{ color: "#82503d", fontWeight: "bold", fontSize: 16 }}
+            >
+              Name
+            </Text>
+            <Text
+              style={{ color: "#82503d", fontWeight: "bold", fontSize: 16 }}
+            >
+              Steps
+            </Text>
+            <Text
+              style={{ color: "#82503d", fontWeight: "bold", fontSize: 16 }}
+            >
+              Time
+            </Text>
           </View>
           <FlatList
             data={scores}
@@ -214,22 +255,46 @@ export default function Info() {
                 }}
               >
                 <View>
-                  <Text style={{ color: "black", fontSize: 16 }}>
+                  <Text
+                    style={{
+                      color: "#82503d",
+                      fontWeight: "bold",
+                      fontSize: 16,
+                    }}
+                  >
                     #{index + 1}
                   </Text>
                 </View>
                 <View>
-                  <Text style={{ color: "black", fontSize: 16 }}>
+                  <Text
+                    style={{
+                      color: "#82503d",
+                      fontWeight: "bold",
+                      fontSize: 16,
+                    }}
+                  >
                     {item.name}
                   </Text>
                 </View>
                 <View>
-                  <Text style={{ color: "black", fontSize: 16 }}>
+                  <Text
+                    style={{
+                      color: "#82503d",
+                      fontWeight: "bold",
+                      fontSize: 16,
+                    }}
+                  >
                     {item.steps} steps
                   </Text>
                 </View>
                 <View>
-                  <Text style={{ color: "black", fontSize: 16 }}>
+                  <Text
+                    style={{
+                      color: "#82503d",
+                      fontWeight: "bold",
+                      fontSize: 16,
+                    }}
+                  >
                     {item.time}s
                   </Text>
                 </View>

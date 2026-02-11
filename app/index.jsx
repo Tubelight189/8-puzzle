@@ -1,4 +1,5 @@
 import AntDesign from "@expo/vector-icons/AntDesign";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
@@ -11,6 +12,7 @@ export default function Index() {
   const router = useRouter();
   const { reset } = useLocalSearchParams();
   const DummyBoard = [1, 2, 3, 4, 5, 6, 7, 0, 8];
+
   const isSolvable = (arr) => {
     let inv = 0;
 
@@ -38,7 +40,6 @@ export default function Index() {
 
     setBoard(arr);
   };
-
   useEffect(() => {
     randBoard();
   }, []);
@@ -49,8 +50,10 @@ export default function Index() {
       if (!loggedIn) router.replace("/login");
     };
     checkLogin();
-  });
+  }, []);
+
   const originalBoard = [1, 2, 3, 4, 5, 6, 7, 8, 0];
+
   const getRowCol = (index) => {
     return { row: Math.floor(index / 3), col: index % 3 };
   };
@@ -100,6 +103,16 @@ export default function Index() {
     }
   };
 
+  const App = () => {
+    return (
+      <DotLottieReact
+        src="https://lottie.host/6d675637-de46-4891-a19c-4fd8691da5fd/41XHlvJQdS.lottie"
+        loop
+        autoplay
+      />
+    );
+  };
+
   return (
     <View
       style={{
@@ -118,11 +131,12 @@ export default function Index() {
         <Text
           style={{
             backgroundColor: "#FAEBD7",
-            color: "black",
+            color: "#82503d",
             fontSize: 20,
             borderRadius: 5,
             padding: 5,
             margin: 5,
+            fontWeight: "bold",
           }}
         >
           Steps: {steps}
@@ -130,11 +144,12 @@ export default function Index() {
         <Text
           style={{
             backgroundColor: "#FAEBD7",
-            color: "black",
+            color: "#82503d",
             fontSize: 20,
             borderRadius: 5,
             padding: 5,
             margin: 5,
+            fontWeight: "bold",
           }}
         >
           Time: {time}
@@ -167,11 +182,11 @@ export default function Index() {
                   margin: 1,
                   width: 60,
                   height: 60,
-                  backgroundColor: item == 0 ? "black" : "#FAEBD7",
                   alignItems: "center",
                   justifyContent: "center",
                   borderWidth: 1,
                   borderColor: "black",
+                  borderRadius: 12,
                 }}
               >
                 <TouchableOpacity
@@ -179,13 +194,22 @@ export default function Index() {
                   style={{
                     width: 60,
                     height: 60,
-                    backgroundColor: item === 0 ? "#000" : "#FAEBD7",
+                    backgroundColor: item === 0 ? "#714242" : "#f3d3aa",
                     alignItems: "center",
                     justifyContent: "center",
                     borderWidth: 1,
+                    borderRadius: 12,
                   }}
                 >
-                  <Text>{item == 0 ? "" : item}</Text>
+                  <Text
+                    style={{
+                      color: "#a66950",
+                      fontWeight: "bold",
+                      fontSize: 18,
+                    }}
+                  >
+                    {item == 0 ? "" : item}
+                  </Text>
                 </TouchableOpacity>
               </View>
             )}
@@ -208,7 +232,24 @@ export default function Index() {
             }}
             onPress={() => reset_game()}
           >
-            <AntDesign name="reload" size={24} color="black" />
+            <AntDesign
+              name="reload"
+              size={24}
+              color="#82503d"
+              style={{
+                fontWeight: "bold",
+                strokeWidth: 20,
+              }}
+            />
+            <Text
+              style={{
+                color: "#82503d",
+                fontSize: 12,
+                fontWeight: "bold",
+              }}
+            >
+              Reset
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
@@ -217,9 +258,23 @@ export default function Index() {
               padding: 5,
               borderRadius: 5,
             }}
-            onPress={() => router.push("/info")}
+            onPress={() =>
+              router.push({
+                pathname: "/solution",
+                params: { board: JSON.stringify(board) },
+              })
+            }
           >
-            <AntDesign name="x" size={24} color="black" />
+            <AntDesign name="book" size={24} color="#82503d" />
+            <Text
+              style={{
+                color: "#82503d",
+                fontSize: 12,
+                fontWeight: "bold",
+              }}
+            >
+              Hints
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
